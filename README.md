@@ -10,18 +10,19 @@
 
 ### Implemented IoT Solution
 
-#### Electronic door lock: 
-IoT Solution to control door lock using fingerprints
+#### Electronic lock trigerred by biometric sensor: 
+IoT Solution to control  lock using fingerprint sensor
 #### Main Components:
-Microcontroller stm32 Blue Pill, using features like: UART, TIMER, and GPIO
+Microcontroller stm32 Blue Pill and arduino, using features like: UART, TIMER, SPI and GPIO
 #### Hardware:
-Servo, fingerprint sensor,  several leds with  a  buzzer, nuts, bolts, etc
+Servo, fingerprint sensor,  several leds, a dipswitch , etc
 #### Use Cases:
-Locking/unlocking a door via biometrics validation. Door could be at home or to protect critical assets on a company 
+Locking/unlocking a locking mechanism via biometrics validation. This proove of concept for a locking mechanism could be implemented on a door, a safe or evena drawer.
 
 #### Technical Specs – Mechanics components
 Servo Motor: This will be the one in charge of moving the lock upon successful recognition of the fingerprint
-Door Latch: The servo will be connected to the latch so it can grant or not access to the person
+Optional:
+  Door Latch-> The servo will be connected to the latch so it can grant or not access to the person
 
 ### Source code
 
