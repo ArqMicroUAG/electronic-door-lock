@@ -13,7 +13,7 @@
 #### Electronic lock trigerred by biometric sensor: 
 IoT Solution to control  lock using fingerprint sensor
 #### Main Components:
-Microcontroller stm32 Blue Pill and arduino, using features like: UART, TIMER, SPI and GPIO
+Microcontroller stm32 Blue Pill and arduino, using features like: UART, TIMER and GPIO
 #### Hardware:
 Servo, fingerprint sensor,  several leds, a dipswitch , etc
 #### Use Cases:
