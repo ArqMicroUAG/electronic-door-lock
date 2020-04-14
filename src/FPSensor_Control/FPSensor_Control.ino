@@ -3,13 +3,15 @@
 #include <Adafruit_Fingerprint.h>
 //////////////// bss variabled ////////////////
 Servo servo;
-SoftwareSerial mySerial(2, 3);
-Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
+SoftwareSerial fp_sensor(2, 3);
+SoftwareSerial uartstm32_control(12,13);
+Adafruit_Fingerprint finger = Adafruit_Fingerprint(&fp_sensor);
 int8_t sval;
 int btn_selectorval;
 int option;
 uint8_t id;
 bool sensor_present;
+char uartret;
 
 void setup() {
   //sensor presence asume not existance
@@ -17,10 +19,14 @@ void setup() {
   //initialize hw serial tx/rx//
   Serial.begin(9600);
   delay(100);
+  uartstm32_control.begin(9600);
+  delay(100);
+  uartret=0;
   Serial.println("\nMCU Biometric Access\n ");
   //set br for finger print sensor
   finger.begin(57600);
   //Set our digital inputs/outputs
+  pinMode(10,OUTPUT); // DBG Led
   pinMode(9,OUTPUT); // BLUE LED
   pinMode(8,OUTPUT); // RED LED
   pinMode(7,OUTPUT); // GREEN LED  
@@ -45,6 +51,7 @@ void setup() {
 
   // close the servo lock 
   servo.write(0);
+  digitalWrite(10,0);
 }
 
 void loop() {
@@ -65,13 +72,27 @@ void loop() {
         delay(100);
         sval=getFingerprintIDez(); 
         delay(100);  // give a time of refresh
-        if(sval!=-1)
+        uartret= uartstm32_control.read();
+        Serial.println(uartret);
+   
+        if(uartret == 89 )
         {
-          digitalWrite(8,0);
-        }else
+          // open our lock
+          servo.write(180);
+          delay(2000);
+          servo.write(0);
+          digitalWrite(10,1);
+          fp_sensor.listen();
+        } else if ( (uartret ==  78) || (sval == -1))
         {
+          servo.write(0);
           digitalWrite(8,1);
           delay(350);
+          digitalWrite(8,0);
+          digitalWrite(10,0);
+          
+        } else
+        {
           digitalWrite(8,0);
         }
       }
@@ -323,17 +344,19 @@ int getFingerprintIDez() {
 
   if( (p_gfimage != FINGERPRINT_OK) || ( p_image2tz  != FINGERPRINT_OK) || (p_ffastsearhc != FINGERPRINT_OK) )
   {    
-    servo.write(0);
+    uartstm32_control.write(68);       
     return -1;
   } else {
     // found a match!
     Serial.print("Found ID #"); Serial.print(finger.fingerID);
     digitalWrite(7,1);
-    delay(500);
-    digitalWrite(7,0);       
-    servo.write(180);  //open lock
-    delay(2000);       //wait
-    servo.write(0);    //close lock
+    delay(250);
+    digitalWrite(7,0);
+    //send data to serial stm32
+    uartstm32_control.write(65);
+    // enable the sw port to listen
+    uartstm32_control.listen();
+    delay(150);
    }
   return finger.fingerID; 
 }
