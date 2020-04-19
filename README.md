@@ -1,5 +1,5 @@
 # electronic-door-lock
-
+Welcome for source code repository for Electronic Door Lock project, this is the final project on "Arquitectura de microprocesdores" subject, UAG.
 
 ### Team Members
 - Jorge Daniel Núñez
@@ -9,12 +9,6 @@
 - Alejandro Enriquez
 - Uzi Eliel González 
 
-### Source Code
- Review [Source code](/src) files for the project.
- 
-### Demo
-Download and watch the solution working: [demo video](/docs/fp_lock_video_func_evidence.mp4)
-
 ### Technical documentation
 - [Fingerprint Lock Access Design Document](/docs/Fingerprint_Lock_Access_Design_Document.docx)
 In this document you’ll  find the functional requirements and non-functional requirements for the project involving 2 microcontrollers with different architectures, a biometric sensor which is fingerprint sensor, different bus communication like USAR and PSI and an actuator to simulate the open and close motion of a safe box blocking mechanism or a door lock.
@@ -23,5 +17,13 @@ In this document you’ll  find the functional requirements and non-functional r
 In this document you will find a general description of the first implementation plan for the project, main components and general technical Specs.
 
 - [Other diagrams and docs](/docs)
+
+
+### Source Code
+ Review [Source code](/src) files for the project.
+ 
+### Demo
+Download and watch the solution working: [demo video](/docs/fp_lock_video_func_evidence.mp4)
+
 
 
