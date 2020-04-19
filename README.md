@@ -9,10 +9,15 @@
 - Uzi Eliel González 
 
 ### Source Code
- Review[Source code](/src) files for the project.
+ Review [Source code](/src) files for the project.
  
 ### Demo
-Watch the solution working: [demo video](/docs/fp_lock_video_func_evidence.mp4)
+Download and watch the solution working: [demo video](/docs/fp_lock_video_func_evidence.mp4)
+
+### Technical documentation
+- [Fingerprint Lock Access Design Document](/docs/Fingerprint_Lock_Access_Design_Document.docx)
+- [IoT Solution description](/docs/IoT_Solution_Project_overview.pptx)
+- [Other diagrams and docs](/docs)
 
 #### Electronic lock trigerred by biometric sensor: 
 IoT Solution to control  lock using fingerprint sensor
