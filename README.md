@@ -1,5 +1,5 @@
 # electronic-door-lock
-Welcome for source code repository for Electronic Door Lock project, this is the final project on "Arquitectura de microprocesdores" subject, UAG.
+Welcome to source code repository for Electronic Door Lock project, this is the final project on "Arquitectura de microprocesdores" subject, UAG.
 
 ### Team Members
 - Jorge Daniel Núñez
