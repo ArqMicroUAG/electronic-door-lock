@@ -8,8 +8,11 @@
 - Alejandro Enriquez
 - Uzi Eliel González 
 
-### Implemented IoT Solution
- [Source code](/src)
+### Source Code
+ Review[Source code](/src) files for the project.
+ 
+### Demo
+Watch the solution working: [demo video](/docs/fp_lock_video_func_evidence.mp4)
 
 #### Electronic lock trigerred by biometric sensor: 
 IoT Solution to control  lock using fingerprint sensor
@@ -25,6 +28,5 @@ Servo Motor: This will be the one in charge of moving the lock upon successful r
 Optional:
   Door Latch-> The servo will be connected to the latch so it can grant or not access to the person
 
-### Source code
 
 ### Technical documentation
