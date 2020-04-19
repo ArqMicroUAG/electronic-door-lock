@@ -23,7 +23,7 @@ In this document you will find a general description of the first implementation
  Review [Source code](/src) files for the project.
  
 ### Demo
-Download and watch the solution working: [demo video](/docs/fp_lock_video_func_evidence.mp4)
+Download our [demo video](/docs/fp_lock_video_func_evidence.mp4) and watch the solution working.
 
 
 
