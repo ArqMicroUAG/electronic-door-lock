@@ -3,7 +3,7 @@ Welcome to source code repository for Electronic Door Lock project, this is the 
 
 ### Team Members
 - Jorge Daniel Núñez
-- Kirath Alejandra Vázquez Muñoz
+- Kirath Alejandra Vázquez Muñoz (kirat.vazquez@edu.uag.mx)
 - Jose Roberto Mosqueda (roberto.mosqueda@edu.uag.mx)
 - Alejandro Olvera (alejandro.olvera@edu.uag.mx)
 - Alejandro Enriquez (salvador.enriquez@edu.uag.mx)
