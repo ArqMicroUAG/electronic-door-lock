@@ -9,6 +9,7 @@
 - Uzi Eliel González 
 
 ### Implemented IoT Solution
+ [Source code](/src)
 
 #### Electronic lock trigerred by biometric sensor: 
 IoT Solution to control  lock using fingerprint sensor
