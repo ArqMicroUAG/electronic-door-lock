@@ -4,10 +4,10 @@ Welcome to source code repository for Electronic Door Lock project, this is the 
 ### Team Members
 - Jorge Daniel Núñez
 - Kirath Alejandra Vázquez Muñoz
-- Jose Roberto Mosqueda
-- Alejandro Olvera
-- Alejandro Enriquez
-- Uzi Eliel González 
+- Jose Roberto Mosqueda (roberto.mosqueda@edu.uag.mx)
+- Alejandro Olvera (alejandro.olvera@edu.uag.mx)
+- Alejandro Enriquez (salvador.enriquez@edu.uag.mx)
+- Uzi Eliel González
 
 ### Technical documentation
 - [Fingerprint Lock Access Design Document](/docs/Fingerprint_Lock_Access_Design_Document.docx)
