@@ -1,3 +1,23 @@
+/*************************************************** 
+  This is an implementation for Optical Sensor 
+  taken from adafruit sensor library for arduino
+  changing  some  lines to fit this project nececities.
+  This changes are marqued as  "//cdfp"
+  stands for "change done for project"
+  
+  Designed specifically to work with the Adafruit BMP085 Breakout 
+  ----> http://www.adafruit.com/products/751
+
+  These displays use TTL Serial to communicate, 2 pins are required to 
+  interface
+  Adafruit invests time and resources providing this open source code, 
+  please support Adafruit and open-source hardware by purchasing 
+  products from Adafruit!
+
+  Written by Limor Fried/Ladyada for Adafruit Industries.  
+  BSD license, all text above must be included in any redistribution
+ ****************************************************/
+ 
 /////////////////Includes//////////////////////
 #include <Servo.h>
 #include <Adafruit_Fingerprint.h>
@@ -13,6 +33,12 @@ uint8_t id;
 bool sensor_present;
 char uartret;
 
+/*
+* Function: setup
+* Brief: ports setup and variable init
+* Input: void
+* Output: void
+*/
 void setup() {
   //sensor presence asume not existance
   sensor_present=false;
@@ -54,6 +80,12 @@ void setup() {
   digitalWrite(10,0);
 }
 
+/*
+* Function: loop
+* Brief: arduino entry point and loor main operation
+* Input: void
+* Output: void
+*/
 void loop() {
   
   if( sensor_present == true ){
@@ -107,6 +139,13 @@ void loop() {
 
 //////////// function definition ////////////////
 
+/*
+* Function: readnumber
+* Brief: this is uesed t get the data from serial and asign the id
+         number to the enrolled fingerprint
+* Input: void
+* Output: input number
+*/
 uint8_t readnumber(void) {
   uint8_t num = 0;
   
@@ -117,6 +156,12 @@ uint8_t readnumber(void) {
   return num;
 }
 
+/*
+* Function: enroll
+* Brief: entry point to beguin fingerprint enroll
+* Input: void
+* Output: void
+*/
 void enroll ()
 {
   Serial.println("Ready to enroll a fingerprint!");
@@ -128,10 +173,17 @@ void enroll ()
   Serial.print("Enrolling ID #");
   Serial.println(id);
   
-  //while (!  getFingerprintEnroll() );
+  //cdfp while (!  getFingerprintEnroll() );
   getFingerprintEnroll();
 }
 
+/*
+* Function: getFingerprintEnroll
+* Brief: function called from the enroll entry point to beguin 
+		 fingerprint enrollment procedure
+* Input: void 
+* Output: ID
+*/
 uint8_t getFingerprintEnroll() {
   int p = -1;
   Serial.print("Waiting for valid finger to enroll as #"); Serial.println(id);
@@ -270,6 +322,13 @@ uint8_t getFingerprintEnroll() {
   }   
 }
 
+/*
+* Function: getFingerprintID
+* Brief: This function is used to get the finger id calling the
+		 api during an enroll process
+* Input: void
+* Output: uint8_t -> FingerPrint ID
+*/
 uint8_t getFingerprintID() {
   uint8_t p = finger.getImage();
   switch (p) {
@@ -336,7 +395,16 @@ uint8_t getFingerprintID() {
   return finger.fingerID;
 }
 
-// returns -1 if failed, otherwise returns ID #
+/*
+* Function: getFingerprintIDez
+* Brief: This function is used to call the Adafruit_Fingerprint.h apis
+		 called from an access routine or a read routine,
+		 in here the usar sends a singe byte to the stm32 control,
+		 but can be managed to send the image,image2Tx to future implmenetation
+		 using sd memories
+* Input: void
+* Output: returns -1 if failed, otherwise returns ID #
+*/
 int getFingerprintIDez() {
   uint8_t p_gfimage = finger.getImage();
   uint8_t p_image2tz = finger.image2Tz();

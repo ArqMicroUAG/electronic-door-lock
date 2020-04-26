@@ -1,4 +1,4 @@
-/* Task based USART demo:
+/* Based Code USART demo wiht FreeRTOS:
  * Rewritten by Alejandro Enriquez 
  * 16 March 2020
  * Comments:
@@ -13,9 +13,6 @@
  *	RTS:	A12 (not used)
  *	Config:	8N1
  *	Baud:	9600
- * Caution:
- *	Not all GPIO pins are 5V tolerant, so be careful to
- *	get the wiring correct.
  */
 #include <FreeRTOS.h>
 #include <task.h>
@@ -36,8 +33,12 @@ TaskHandle_t tLedHandler;
 QueueHandle_t qMessageHandler;
 
 /*********************************************************************
- * Setup the Clocks
- *********************************************************************/
+* Function: init_clock
+* Brief: Setup the port and perifereal clocks
+* Input: void
+* Output: void
+*********************************************************************/
+
 static void init_clock(void) {
 
 	rcc_clock_setup_in_hse_8mhz_out_24mhz();
@@ -51,8 +52,11 @@ static void init_clock(void) {
 }
 
 /*********************************************************************
- * Setup the GPIO(LEDS)
- *********************************************************************/
+* Function: init_gpio
+* Brief:  Setup the GPIO(LEDS)
+* Input: void
+* Output: void
+*********************************************************************/
 static void init_gpio(void) {
 
 	gpio_set(GPIOA, GPIO6 | GPIO7);
@@ -66,9 +70,13 @@ static void init_gpio(void) {
 
 
 }
+
 /*********************************************************************
- * Setup the UART
- *********************************************************************/
+* Function: uart_setup
+* Brief: Setup the UART configuration parameters
+* Input: void
+* Output: void
+*********************************************************************/
 static void uart_setup(void) {
 
 	nvic_enable_irq(NVIC_USART1_IRQ);
@@ -91,9 +99,13 @@ static void uart_setup(void) {
 
 	
 }
+
 /*********************************************************************
- * ISR USART_RX handler function (Name definded by libopencm3)
- *********************************************************************/
+* Function: usart1_isr
+* Brief: ISR USART_RX handler function (Name definded by libopencm3)
+* Input: void
+* Output: void
+*********************************************************************/
 void usart1_isr(void){
 	
 	usart_disable_rx_interrupt(USART1);
@@ -102,11 +114,13 @@ void usart1_isr(void){
 	gpio_toggle(GPIOA,GPIO7);
 }
 
-
-
 /*********************************************************************
- * Task that Sends Characters to the UART
- *********************************************************************/
+* Function: tSend
+* Brief: Task that Sends Characters to the UART,takinf the "to send"
+         value form the Message Queue
+* Input: void
+* Output: void
+*********************************************************************/
 static void tSend(void *args __attribute__((unused))) {
 	unsigned char tx_char=0x37; // it is a known value the  "7" to see if we are not getting wrong data
 	
@@ -132,9 +146,12 @@ static void tSend(void *args __attribute__((unused))) {
 }
 
 /*********************************************************************
- * Task that Receives Characters from UART via Interruption
- * Send a message queue to the Send function for the loopback
- *********************************************************************/
+* Function: tReceive
+* Brief: Task that Receives Characters from UART via Interruption
+         Send a message queue to the Send function for the loopback
+* Input: void XXX ToDo: Remove unused params
+* Output: void
+*********************************************************************/
 static void tReceive(void *args __attribute__((unused))){
 	unsigned char rx_char=0x38; // this is a known value of "8" to check that we are not queing wrong data for the lb
 	unsigned char rx_access=0;
@@ -176,8 +193,11 @@ static void tReceive(void *args __attribute__((unused))){
 
 
 /*********************************************************************
- * Task that blinks Pin13 (LED)
- *********************************************************************/
+* Function: tLed
+* Brief: Task that blinks Pin13 (LED)
+* Input: void params not used XXX To do remove paramas if not used
+* Output: ovid
+*********************************************************************/
 static void tLed(void *args __attribute((unused))) {
 	for (;;) {
 		gpio_toggle(GPIOC,GPIO13);
@@ -186,8 +206,8 @@ static void tLed(void *args __attribute((unused))) {
 }
 
 /*********************************************************************
- * Main program
- *********************************************************************/
+* Main program
+*********************************************************************/
 int main(void) {
 
 	init_clock();
@@ -214,5 +234,4 @@ int main(void) {
 	for (;;);
 	return 0;
 }
-
 // End
